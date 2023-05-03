@@ -1,27 +1,5 @@
-import React, { useEffect } from "react";
-import "@/styles/globals.css";
-import { ApolloProvider } from "@apollo/client";
-import client from "../graphql/client";
+import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }) {
-  return (
-    // <ApolloProvider client={client}>
-    <Component {...pageProps} />
-    // </ApolloProvider>
-  );
+  return <Component {...pageProps} />
 }
-
-// export async function getServerSideProps() {
-//   const { getCatalogs, dataCatalogs, errorCatalogs, loadingCatalogs } =
-//     useCatalogs();
-
-//   const { data } = await getCatalogs();
-//   console.log("data", data);
-//   if (data) {
-//     console.log(data);
-//   }
-
-//   return {
-//     props: {},
-//   };
-// }
