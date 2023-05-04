@@ -1,17 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import img1 from "../images/canvas-image-3.png";
-import img2 from "../images/canvas-image-2.png";
+
+import img1 from "../../images/canvas-image-3.png";
+import img2 from "../../images/canvas-image-2.png";
 
 export default function HomeTopGallery() {
-  const navigate = useNavigate();
 
-  const handleCatalogClick = () => {
-    navigate("/catalog");
-  };
 
-  const handleAboutClick = () => {
-    navigate("/about");
-  };
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 text-white relative ">
@@ -23,13 +17,11 @@ export default function HomeTopGallery() {
           Custom Furniture.
         </h1>
         <button
-          onClick={() => handleCatalogClick()}
           className="absolute text-black bg-white mt-[32rem] md:mt-[25rem] left-[10%] p-2 mix-blend-screen rounded-md text-lg font-bold z-50"
         >
           View Catalog
         </button>
         <button
-          onClick={() => handleAboutClick()}
           className="absolute mt-[32rem] md:mt-[25rem] left-[10%] ml-[10rem] p-[0.4rem] outline rounded-md text-lg font-bold z-50"
         >
           Learn More
