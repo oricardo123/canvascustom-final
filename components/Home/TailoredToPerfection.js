@@ -1,5 +1,4 @@
-import img1 from "../images/canvas-image-15.jpg";
-import "../tailwind.css";
+import img1 from "../../images/canvas-image-15.jpg";
 
 const TailoredToPerfection = () => {
   return (

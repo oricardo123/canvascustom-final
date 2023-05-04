@@ -2,11 +2,18 @@ import React, { useEffect } from "react";
 import "@/styles/globals.css";
 import { ApolloProvider } from "@apollo/client";
 import client from "../graphql/client";
+import '../styles/globals.css';
+import Navbar from "@/components/FooterNavbar/NavBar";
+import Footer from "@/components/FooterNavbar/Footer";
 
 export default function App({ Component, pageProps }) {
   return (
     // <ApolloProvider client={client}>
-    <Component {...pageProps} />
+    <>
+      <Navbar /> {/* Add the Navbar component */}
+      <Component {...pageProps} />
+      <Footer /> {/* Add the Footer component */}
+    </>
     // </ApolloProvider>
   );
 }
