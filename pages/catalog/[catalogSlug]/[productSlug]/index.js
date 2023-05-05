@@ -40,7 +40,6 @@ export async function getStaticPaths() {
 
   for (const catalog of catalogs) {
     const products = await fetchProductsByCatalog(catalog.catalogSlug);
-    console.log("products", products);
 
     for (const product of products) {
       paths.push({
@@ -51,8 +50,6 @@ export async function getStaticPaths() {
       });
     }
   }
-
-  //  console.log("product path", paths);
 
   return {
     paths,

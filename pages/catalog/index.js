@@ -3,7 +3,6 @@ import Link from "next/link";
 import { fetchCatalogs } from "../../lib/fetchCatalogs";
 
 function CatalogList({ catalogs }) {
-  console.log("catalogs", catalogs);
   return (
     <div>
       <h1>Catalogs</h1>
