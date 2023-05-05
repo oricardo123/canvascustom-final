@@ -35,7 +35,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { catalogSlug, catalogName } = params;
   const products = await fetchProductsByCatalog(catalogSlug);
-  console.log("products", products);
   return {
     props: {
       catalogSlug,
