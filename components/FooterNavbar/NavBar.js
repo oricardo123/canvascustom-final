@@ -1,6 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import img from "../../images/canvas-logo-brown.jpg";
+import Image from "next/image";
+import img from "../../public/images/canvas-logo-brown.jpg";
+
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -24,7 +27,15 @@ const Navbar = () => {
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img className="h-8 w-auto" src={img} alt="canvas custom" />
+              <Image
+                src={img}
+                alt="Picture"
+                width={800}
+                height={800}
+                className="h-8 w-auto"
+                // className="absolute right-[5%] bottom-[48%] w-auto rounded-2xl hidden lg:block"
+              />
+              {/* <img className="h-8 w-auto" src={img} alt="canvas custom" /> */}
             </Link>
           </div>
           <div className="flex lg:hidden">
