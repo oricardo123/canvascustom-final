@@ -9,7 +9,8 @@ function Product({
   product: { name, description, image },
   catalogSlug,
   productSlug,
-}) {
+}) {{  console.log("catalogSlug:", catalogSlug);
+console.log("productSlug:", productSlug);}
   const options = {
     replace: ({ attribs, children, name }) => {
       if (name === "li") {
@@ -27,7 +28,7 @@ function Product({
           items={[
             { label: "Catalog", href: "/catalog" },
             { label: catalogSlug, href: `/catalog/${catalogSlug}` },
-            { label: name, href: `/catalog/${catalogSlug}/${productSlug}` },
+            { label: productSlug, href: `/catalog/${catalogSlug}/${productSlug}` },
           ]}
         />
       </div>
