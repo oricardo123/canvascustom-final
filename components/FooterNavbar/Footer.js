@@ -15,22 +15,15 @@ const Footer = () => {
   return (
     <footer className="footer-bg text-white p-8">
       <div className="flex sm:flex-col md:flex-row justify-evenly">
-        {/* <img
-          className="w-[20rem] h-[9rem] hidden md:block"
-          src={img}
-          alt="Logo"
-        /> */}
         <Image
           src={img}
-          alt="Picture"
-          width={800}
-          height={800}
-          className="h-8 w-auto"
+          alt="Logo"
+          className="w-[20rem] h-[9rem] hidden lg:block"
           // className="absolute right-[5%] bottom-[48%] w-auto rounded-2xl hidden lg:block"
         />
-        <VerticalLine />
+        <VerticalLine/>
         <div className="flex flex-col md:flex-row">
-          <div className="">
+          <div>
             <h1 className="font-bold">CONTACT INFO</h1>
             <p>Business Email:</p>
             <p>
@@ -52,7 +45,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex-col xs:mb-3 md:mb-0 md:flex-row md:ml-12 mt-5">
+          <div className="flex-col xs:mb-3 md:flex-row md:ml-12 mt-5">
             <p>Business Address:</p>
             <p>303 Raleigh House </p>
             <p>Dolphin Square</p>
@@ -61,7 +54,7 @@ const Footer = () => {
           </div>
         </div>
         <VerticalLine />
-        <div className="flex-col">
+        <div className="flex flex-col">
           <h3 className="font-bold mb-4">PAGES</h3>
           {navigation.map((item) => (
             <Link href={item.href} key={item.name} className="py-1">

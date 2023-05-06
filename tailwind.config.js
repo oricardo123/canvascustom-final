@@ -8,16 +8,22 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-      //   'gradient-conic':
-      //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      // },
-    },
-    variants: {
-      extend: {
-        mixBlendMode: ["responsive"],
+      backgroundColor: {
+        HomeContainer2TextBox: 'rgba(189, 189, 189, 0.3)',
+        FooterColor: 'rgba(115, 62, 29, 1)',
       },
+      mixBlendMode: {
+        screen: 'screen',
+        'color-burn': 'color-burn',
+      },
+      screens: {
+        'xs': '300px',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      mixBlendMode: ['responsive'],
     },
   },
   plugins: [],
