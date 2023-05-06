@@ -7,16 +7,14 @@ function CatalogList({ catalogs }) {
   return (
     <div className="mt-24">
       <h1>Catalogs</h1>
-      <ul className="grid grid-rows-4">
+      <div class="grid grid-cols-4 grid-rows-2 gap-4">
         {catalogs.map((catalog) => (
-          <li key={catalog.catalogSlug}>
-            <Link href={`/catalog/${catalog.catalogSlug}`}>
-              <img src={catalog.image.url} className="" />
-              {catalog.name}
-            </Link>
-          </li>
+          <Link href={`/catalog/${catalog.catalogSlug}`}>
+            <img src={catalog.image.url} className="" />
+            {catalog.name}
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
