@@ -7,7 +7,7 @@ function CatalogList({ catalogs }) {
   return (
     <div className="mt-24">
       <h1>Catalogs</h1>
-      <div class="grid grid-cols-4 grid-rows-2 gap-4">
+      <div className="grid grid-cols-4 grid-rows-2 gap-4">
         {catalogs.map((catalog) => (
           <Link href={`/catalog/${catalog.catalogSlug}`}>
             <img src={catalog.image.url} className="" />
