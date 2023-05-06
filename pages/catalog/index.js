@@ -5,12 +5,12 @@ import { fetchCatalogs } from "../../lib/fetchCatalogs";
 
 function CatalogList({ catalogs }) {
   return (
-    <div className="mt-24">
+    <div className="my-24">
       <h1>Catalogs</h1>
-      <div class="grid grid-cols-4 grid-rows-2 gap-4">
+      <div class="grid grid-cols-4 grid-rows-2 gap-4 justify-center items-center">
         {catalogs.map((catalog) => (
           <Link href={`/catalog/${catalog.catalogSlug}`}>
-            <img src={catalog.image.url} className="" />
+            <img src={catalog.image.url} className="shadow-none !important" />
             {catalog.name}
           </Link>
         ))}
