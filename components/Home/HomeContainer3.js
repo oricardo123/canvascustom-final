@@ -1,6 +1,8 @@
-import img1 from "../../images/canvas-image-12.jpg";
-import img2 from "../../images/canvas-image-13.jpg";
-import img3 from "../../images/canvas-image-14.jpg";
+import Image from "next/image";
+
+import img1 from "../../public/images/canvas-image-12.jpg";
+import img2 from "../../public/images/canvas-image-13.jpg";
+import img3 from "../../public/images/canvas-image-14.jpg";
 
 const HomeContainer3 = () => {
   return (
@@ -16,19 +18,41 @@ const HomeContainer3 = () => {
       </div>
       <div className="flex flex-col xl:flex-row xl:flex-basis-1/2">
         <div className="flex xs:mt-9 xs:mb-4 xl:mt-0 xl:mb-0 xl:flex-col justify-evenly">
-          <img
+          {/* <img
             alt="inspecting top of table"
             src={img1}
             className="w-auto h-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
+          /> */}
+          <Image
+            src={img1}
+            alt="Picture"
+            width={500}
+            height={500}
+            className="w-auto h-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
           />
-          <img
+          {/* <img
             alt="measuring"
             src={img2}
             className="w-auto h-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
+          /> */}
+          <Image
+            src={img2}
+            alt="Picture"
+            width={500}
+            height={500}
+            className="w-auto h-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
           />
-          <img
+
+          {/* <img
             alt="stitching onto furniture"
             src={img3}
+            className="h-auto w-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
+          /> */}
+          <Image
+            src={img3}
+            alt="Picture"
+            width={500}
+            height={500}
             className="h-auto w-auto object-cover max-h-[115px] max-w-[115px] flex-basis-1/3 rounded-full xs:p-2 xl:p-0 xl:mr-5"
           />
         </div>

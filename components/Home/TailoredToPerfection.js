@@ -1,4 +1,5 @@
-import img1 from "../../images/canvas-image-15.jpg";
+import Image from "next/image";
+import img1 from "../../public/images/canvas-image-15.jpg";
 
 const TailoredToPerfection = () => {
   return (
@@ -14,11 +15,12 @@ const TailoredToPerfection = () => {
             solutions.
           </p>
         </div>
-        <img
+        <Image src={img1} alt="Picture" width={500} height={500} />
+        {/* <img
           src={img1}
           alt=""
           className="w-auto h-auto rounded-2xl mr-[9rem] max-w-[43.25rem] "
-        />
+        /> */}
       </div>
       <div className="hr h-1 w-auto mt-[13rem] mb-[9rem] mx-[9rem]" />
     </>
