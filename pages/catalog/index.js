@@ -1,16 +1,28 @@
-// pages/catalog/index.js
 import Link from "next/link";
 import Image from "next/image";
 import { fetchCatalogs } from "../../lib/fetchCatalogs";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
 
 function CatalogList({ catalogs }) {
   return (
     <div className="my-24">
-      <h1>Catalogs</h1>
-      <div class="grid grid-cols-4 grid-rows-2 gap-4 justify-center items-center">
+      <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
+        Catalog
+      </h1>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
         {catalogs.map((catalog) => (
-          <Link href={`/catalog/${catalog.catalogSlug}`}>
-            <img src={catalog.image.url} className="shadow-none !important" />
+          <Link
+            href={`/catalog/${catalog.catalogSlug}`}
+            className="w-[10.9rem] h-[10.9rem]"
+          >
+            <div className="image-wrapper">
+              <Image
+                src={catalog.image.url}
+                alt={catalog.name}
+                width={224}
+                height={224}
+              />
+            </div>
             {catalog.name}
           </Link>
         ))}
@@ -26,7 +38,7 @@ export async function getStaticProps() {
     props: {
       catalogs,
     },
-    revalidate: 60, // Optional: Set a revalidation time in seconds
+    revalidate: 60,
   };
 }
 

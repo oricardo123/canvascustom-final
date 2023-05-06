@@ -33,9 +33,7 @@ const Navbar = () => {
                 width={800}
                 height={800}
                 className="h-8 w-auto"
-                // className="absolute right-[5%] bottom-[48%] w-auto rounded-2xl hidden lg:block"
               />
-              {/* <img className="h-8 w-auto" src={img} alt="canvas custom" /> */}
             </Link>
           </div>
           <div className="flex lg:hidden">

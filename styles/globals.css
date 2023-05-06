@@ -34,3 +34,20 @@ background-color:#733E1D ;
   background: linear-gradient(318.74deg, #572d16 30.67%, #a95a2c 95.58%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(115, 62, 29, 1);
+  box-sizing: border-box;
+  pointer-events: none; /* This ensures the pseudo-element doesn't interfere with any user interactions */
+}

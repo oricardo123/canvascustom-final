@@ -1,22 +1,41 @@
 import { fetchCatalogs } from "../../../lib/fetchCatalogs";
 import { fetchProductsByCatalog } from "../../../lib/fetchProductsByCatalog";
+import Breadcrumbs from "../../../components/Navigation/Breadcrumbs.js";
 import Link from "next/link";
+import Image from "next/image";
 
 function Catalog({ catalogSlug, products }) {
   return (
-    <div>
-      <h1>{catalogSlug}</h1>
-      <ul>
+    <>
+      <div className="mt-20">
+        <h1>{catalogSlug}</h1>
+        <div className="w-full">
+          <Breadcrumbs
+            items={[
+              { label: "Catalog", href: "/catalog" },
+              { label: catalogSlug, href: `/catalog/${catalogSlug}` },
+            ]}
+          />
+        </div>
+
         {products.map((product) => (
-          <li key={product.name}>
-            <Link href={`/catalog/${catalogSlug}/${product.productSlug}`}>
-              <img src={product.image[0].url} />
-              {product.name}
-            </Link>
-          </li>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
+          <Link href={`/catalog/${catalogSlug}/${product.productSlug}`}>
+            <div className="image-wrapper">
+              <Image
+                src={product.image[0].url}
+                alt={product.name}
+                width={120}
+                height={120}
+                className=""
+              />
+            </div>
+            {product.name}
+          </Link>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
 

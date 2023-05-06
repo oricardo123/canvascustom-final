@@ -2,8 +2,14 @@ import { fetchCatalogs } from "../../../../lib/fetchCatalogs";
 import { fetchProductsByCatalog } from "../../../../lib/fetchProductsByCatalog";
 import { fetchProduct } from "../../../../lib/fetchProduct";
 import Parser, { domToReact } from "html-react-parser";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
+import Image from "next/image";
 
-function Product({ product: { name, description, image } }) {
+function Product({
+  product: { name, description, image },
+  catalogSlug,
+  productSlug,
+}) {
   const options = {
     replace: ({ attribs, children, name }) => {
       if (name === "li") {
@@ -15,7 +21,16 @@ function Product({ product: { name, description, image } }) {
   };
 
   return (
-    <div>
+    <div className="mt-24">
+      <div className="w-full">
+        <Breadcrumbs
+          items={[
+            { label: "Catalog", href: "/catalog" },
+            { label: catalogSlug, href: `/catalog/${catalogSlug}` },
+            { label: name, href: `/catalog/${catalogSlug}/${productSlug}` },
+          ]}
+        />
+      </div>
       <h2 className="mt-20 ml-10">{name}</h2>
       {image
         .filter((img) => img.fileName.includes("w300"))
@@ -58,7 +73,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { productSlug } = params;
+  const { catalogSlug, productSlug } = params;
   const product = await fetchProduct(productSlug);
 
   if (!product) {
@@ -70,6 +85,8 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       product,
+      catalogSlug,
+      productSlug,
     },
     revalidate: 60,
   };

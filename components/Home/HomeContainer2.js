@@ -4,17 +4,9 @@ import img from "../../public/images/canvas-image-11.png";
 const HomeContainer2 = () => {
   return (
     <div className="flex justify-center relative p-6 mt-[8.75rem] mb-[10.625rem] w-full ">
-      {/* //   <img
-    //     src={img}
-    //     alt="hotel room with furniture"
-    //     className="w-[43.25rem] h-[31.6875rem] rounded-2xl scale-x-[-1] xl:ml-[-25rem]"
-    //   /> */}
-
       <Image
         src={img}
-        alt="Picture"
-        width={500}
-        height={500}
+        alt="hotel room with furniture"
         className="w-[43.25rem] h-[31.6875rem] rounded-2xl scale-x-[-1] xl:ml-[-25rem]"
       />
 

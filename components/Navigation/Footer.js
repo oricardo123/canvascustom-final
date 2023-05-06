@@ -5,7 +5,7 @@ import VerticalLine from "./VerticalLine";
 
 const Footer = () => {
   const navigation = [
-    { name: "Home", href: "/home" },
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Catalog", href: "/catalog" },
     { name: "Portfolio", href: "/portfolio" },
