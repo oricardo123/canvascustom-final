@@ -8,7 +8,7 @@ function Breadcrumbs({ items }) {
           {index > 0 && <span className="mx-2 ">&gt;</span>}
           <Link
             href={item.href}
-            className={`text-gray-600 hover:text-black inline-flex items-center`}
+            className="text-gray-600 hover:text-black inline-flex items-center"
           >
             {item.label}
           </Link>
