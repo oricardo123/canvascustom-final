@@ -10,7 +10,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigation = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/home" },
     { name: "About", href: "/about" },
     { name: "Catalog", href: "/catalog" },
     { name: "Portfolio", href: "/portfolio" },
@@ -69,7 +69,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between">
               <Link href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only"></span>
-                <img className="h-8 w-auto" src={img} alt="" />
+                import Image from "next/image";
               </Link>
               <button
                 type="button"

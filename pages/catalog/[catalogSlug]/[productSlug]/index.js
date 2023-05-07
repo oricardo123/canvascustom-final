@@ -4,13 +4,19 @@ import { fetchProduct } from "../../../../lib/fetchProduct";
 import Parser, { domToReact } from "html-react-parser";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
 import Image from "next/image";
+import Link from "next/link";
 
 function Product({
+  catalogs,
+  products,
   product: { name, description, image },
   catalogSlug,
   productSlug,
-}) {{  console.log("catalogSlug:", catalogSlug);
-console.log("productSlug:", productSlug);}
+}) {
+  {
+    console.log("catalogSlug:", catalogSlug);
+    console.log("productSlug:", productSlug);
+  }
   const options = {
     replace: ({ attribs, children, name }) => {
       if (name === "li") {
@@ -28,10 +34,39 @@ console.log("productSlug:", productSlug);}
           items={[
             { label: "Catalog", href: "/catalog" },
             { label: catalogSlug, href: `/catalog/${catalogSlug}` },
-            { label: productSlug, href: `/catalog/${catalogSlug}/${productSlug}` },
+            {
+              label: productSlug,
+              href: `/catalog/${catalogSlug}/${productSlug}`,
+            },
           ]}
         />
       </div>
+      <ul className="">
+        {catalogs?.map((catalog) => (
+          <li>
+            <Link href={`/catalog/${catalog.catalogSlug}`}>
+              {catalogSlug === catalog.name.toLowerCase() ? (
+                <>
+                  {catalog.name}
+                  <ul>
+                    {products.map((product) => (
+                      <li
+                        className={
+                          product.name === productSlug ? "font-bold" : ""
+                        }
+                      >
+                        {product.name}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                catalog.name
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
       <h2 className="mt-20 ml-10">{name}</h2>
       {image
         .filter((img) => img.fileName.includes("w300"))
@@ -76,6 +111,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { catalogSlug, productSlug } = params;
   const product = await fetchProduct(productSlug);
+  const catalogs = await fetchCatalogs();
+  const products = await fetchProductsByCatalog(catalogSlug);
+  console.log("products", products);
 
   if (!product) {
     return {
@@ -85,6 +123,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      catalogs,
+      products,
       product,
       catalogSlug,
       productSlug,

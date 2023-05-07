@@ -1,15 +1,15 @@
 import Link from "next/link";
-import Image from "next/image";
 import { fetchCatalogs } from "../../lib/fetchCatalogs";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
+import Image from "next/image";
 
-function CatalogList({ catalogs }) {
+function CatalogPage({ catalogs }) {
   return (
     <div className="my-24">
       <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
         Catalog
       </h1>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
         {catalogs.map((catalog) => (
           <Link
             href={`/catalog/${catalog.catalogSlug}`}
@@ -42,4 +42,4 @@ export async function getStaticProps() {
   };
 }
 
-export default CatalogList;
+export default CatalogPage;

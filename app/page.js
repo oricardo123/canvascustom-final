@@ -4,11 +4,15 @@ import HomeContainer3 from "../components/Home/HomeContainer3";
 import TailoredToPerfection from "../components/Home/TailoredToPerfection";
 import GetInTouchHeading from "../components/Home/HomeGetInTouch";
 import "../styles/globals.css";
+import Head from "next/head";
 
 //import "./Pagescss/Homepage.css";
 const Home = () => {
   return (
     <>
+      <Head>
+        <title>Canvas Custom</title>
+      </Head>
       <HomeTopGallery />
       <HomeContainer2 />
       <HomeContainer3 />
