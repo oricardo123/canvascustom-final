@@ -11,8 +11,6 @@ function CatalogNav({ catalogs }) {
         {catalogs?.map((catalog) => (
           <li>
             <Link href={`/catalog/${catalog.catalogSlug}`}>
-              <img src={catalog.image.url} className="" />
-              {catalog.name}
             </Link>
           </li>
         ))}
@@ -23,7 +21,6 @@ function CatalogNav({ catalogs }) {
 
 export async function getStaticProps() {
   const catalogs = await fetchCatalogs();
-  console.log("catalogs", catalogs);
   return {
     props: {
       catalogs,

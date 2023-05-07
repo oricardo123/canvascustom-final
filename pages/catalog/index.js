@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { fetchCatalogs } from "../../lib/fetchCatalogs";
-import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
 import Image from "next/image";
 
 function CatalogPage({ catalogs }) {
   return (
-    <div className="my-24">
+    <div className="mx-24 mt-24 mb-[8.74rem]">
       <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
         Catalog
       </h1>

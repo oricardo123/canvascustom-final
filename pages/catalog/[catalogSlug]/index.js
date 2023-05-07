@@ -8,43 +8,43 @@ import CatalogNav from "@/components/Navigation/CatalogNav";
 function Catalog({ catalogs, catalogSlug, products }) {
   return (
     <>
-      <div className="mt-20">
-        <h1>{catalogSlug}</h1>
-        <div className="w-full">
-          <Breadcrumbs
-            items={[
-              { label: "Catalog", href: "/catalog" },
-              { label: catalogSlug, href: `/catalog/${catalogSlug}` },
-            ]}
-          />
-        </div>
-        <ul className="">
-          {catalogs?.map((catalog) => (
-            <li>
-              <Link href={`/catalog/${catalog.catalogSlug}`}>
-                {catalogSlug === catalog.name.toLowerCase() ? (
-                  <b>{catalog.name}</b>
-                ) : (
-                  catalog.name
-                )}
+      <div className="mt-24 mb-[15.95rem] ">
+        <Breadcrumbs
+          items={[
+            { label: "Catalog", href: "/catalog" },
+            { label: catalogSlug, href: `/catalog/${catalogSlug}` },
+          ]}
+        />
+        <div className="flex">
+          <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
+            Catalog
+          </h1>
+          <ul>
+            {catalogs?.map((catalog) => (
+              <li>
+                <Link href={`/catalog/${catalog.catalogSlug}`}>
+                  {catalogSlug === catalog.name.toLowerCase() ? (
+                    <b>{catalog.name}</b>
+                  ) : (
+                    catalog.name
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
+            {products.map((product) => (
+              <Link href={`/catalog/${catalogSlug}/${product.productSlug}`}>
+                <Image
+                  src={product.image[0].url}
+                  alt={product.name}
+                  width={120}
+                  height={120}
+                />
+                {product.name}
               </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center">
-          {products.map((product) => (
-            <Link href={`/catalog/${catalogSlug}/${product.productSlug}`}>
-              <Image
-                src={product.image[0].url}
-                alt={product.name}
-                width={120}
-                height={120}
-                className=""
-              />
-              {product.name}
-            </Link>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>

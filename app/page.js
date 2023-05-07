@@ -6,7 +6,6 @@ import GetInTouchHeading from "../components/Home/HomeGetInTouch";
 import "../styles/globals.css";
 import Head from "next/head";
 
-//import "./Pagescss/Homepage.css";
 const Home = () => {
   return (
     <>
@@ -21,4 +20,5 @@ const Home = () => {
     </>
   );
 };
+
 export default Home;

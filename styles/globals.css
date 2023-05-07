@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: "Nunito Sans",sans-serif;
+  font-family:"Nunito Sans",sans-serif;
 }
 
 .hr{
@@ -49,5 +50,5 @@ background-color:#733E1D ;
   bottom: 0;
   border: 1px solid rgba(115, 62, 29, 1);
   box-sizing: border-box;
-  pointer-events: none; /* This ensures the pseudo-element doesn't interfere with any user interactions */
+  pointer-events: none;
 }

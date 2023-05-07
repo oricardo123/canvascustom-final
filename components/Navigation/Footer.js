@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import img from "../../public/images/canvas-logo-brown.jpg";
+import Logo from "../../public/images/canvas-logo-white.png";
 import VerticalLine from "./VerticalLine";
 
 const Footer = () => {
@@ -16,12 +16,11 @@ const Footer = () => {
     <footer className="footer-bg text-white p-8">
       <div className="flex sm:flex-col md:flex-row justify-evenly">
         <Image
-          src={img}
+          src={Logo}
           alt="Logo"
           className="w-[20rem] h-[9rem] hidden lg:block"
-          // className="absolute right-[5%] bottom-[48%] w-auto rounded-2xl hidden lg:block"
         />
-        <VerticalLine/>
+        <VerticalLine />
         <div className="flex flex-col md:flex-row">
           <div>
             <h1 className="font-bold">CONTACT INFO</h1>
