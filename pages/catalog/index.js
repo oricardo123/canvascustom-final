@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
 function CatalogPage({ catalogs }) {
   return (
     <div className="mx-24 mt-24 mb-[8.74rem] ">
-      <hr className="w-full"/>
+      <hr className="w-full" />
       <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
         Catalog
       </h1>

@@ -39,7 +39,7 @@ function Product({
         Catalog
       </h1>
       <div className="flex ml-40">
-        <ul>
+        {/* <ul>
           {catalogs?.map((catalog) => (
             <li key={catalog.id}>
               <Link href={`/catalog/${catalog.catalogSlug}`}>
@@ -50,9 +50,11 @@ function Product({
                       {products.map((product) => (
                         <li
                           key={product.id}
-                          className={
-                            product.name === productSlug ? "font-bold" : ""
-                          }
+                          className={`pl-3 ${
+                            product.name.toLowerCase() === productSlug
+                              ? "text-xl"
+                              : ""
+                          }`}
                         >
                           {product.name}
                         </li>
@@ -65,7 +67,7 @@ function Product({
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
         <h2 className="mt-20 ml-40">{name}</h2>
         {image
           .filter((img) => img.fileName.includes("w300"))
@@ -111,7 +113,7 @@ export async function getStaticProps({ params }) {
   const { catalogSlug, productSlug } = params;
   const product = await fetchProduct(productSlug);
   const catalogs = await fetchCatalogs();
-  const products = await fetchProductsByCatalog(catalogSlug);
+  // const products = await fetchProductsByCatalog(catalogSlug);
 
   if (!product) {
     return {
@@ -122,7 +124,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       catalogs,
-      products,
+      //  products,
       product,
       catalogSlug,
       productSlug,
