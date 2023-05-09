@@ -1,14 +1,11 @@
+import Image from "next/image";
+import Parser, { domToReact } from "html-react-parser";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
 import { fetchCatalogs } from "../../../../lib/fetchCatalogs";
 import { fetchProductsByCatalog } from "../../../../lib/fetchProductsByCatalog";
 import { fetchProduct } from "../../../../lib/fetchProduct";
-import Parser, { domToReact } from "html-react-parser";
-import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
-import Image from "next/image";
-import Link from "next/link";
 
-function Product({
-  catalogs,
-  products,
+export default function Product({
   product: { name, description, image },
   catalogSlug,
   productSlug,
@@ -28,46 +25,20 @@ function Product({
       <Breadcrumbs
         items={[
           { label: "Catalog", href: "/catalog" },
-          { label: catalogSlug, href: `/catalog/${catalogSlug}` },
           {
-            label: productSlug,
+            label: catalogSlug.charAt(0).toUpperCase() + catalogSlug.slice(1),
+            href: `/catalog/${catalogSlug}`,
+          },
+          {
+            label: productSlug.toUpperCase(),
             href: `/catalog/${catalogSlug}/${productSlug}`,
           },
         ]}
       />
-      <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-40">
+      <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem] mt-10">
         Catalog
       </h1>
       <div className="flex ml-40">
-        {/* <ul>
-          {catalogs?.map((catalog) => (
-            <li key={catalog.id}>
-              <Link href={`/catalog/${catalog.catalogSlug}`}>
-                {catalogSlug === catalog.name.toLowerCase() ? (
-                  <>
-                    {catalog.name}
-                    <ul>
-                      {products.map((product) => (
-                        <li
-                          key={product.id}
-                          className={`pl-3 ${
-                            product.name.toLowerCase() === productSlug
-                              ? "text-xl"
-                              : ""
-                          }`}
-                        >
-                          {product.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  catalog.name
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul> */}
         <h2 className="mt-20 ml-40">{name}</h2>
         {image
           .filter((img) => img.fileName.includes("w300"))
@@ -113,7 +84,6 @@ export async function getStaticProps({ params }) {
   const { catalogSlug, productSlug } = params;
   const product = await fetchProduct(productSlug);
   const catalogs = await fetchCatalogs();
-  // const products = await fetchProductsByCatalog(catalogSlug);
 
   if (!product) {
     return {
@@ -124,7 +94,6 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       catalogs,
-      //  products,
       product,
       catalogSlug,
       productSlug,
@@ -132,5 +101,3 @@ export async function getStaticProps({ params }) {
     revalidate: 60,
   };
 }
-
-export default Product;

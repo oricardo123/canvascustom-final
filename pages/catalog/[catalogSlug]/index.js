@@ -1,10 +1,8 @@
-import { fetchCatalogs } from "../../../lib/fetchCatalogs";
-import { fetchProductsByCatalog } from "../../../lib/fetchProductsByCatalog";
-import Breadcrumbs from "../../../components/Navigation/Breadcrumbs.js";
 import Link from "next/link";
 import Image from "next/image";
-import CatalogNav from "@/components/Navigation/CatalogNav";
+import Breadcrumbs from "../../../components/Navigation/Breadcrumbs.js";
 import More from "../../../components/More.jsx";
+import { fetchCatalogs } from "../../../lib/fetchCatalogs";
 import { fetchInitialProductsConnection } from "@/lib/fetchInitialProductsConnection";
 
 function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
@@ -14,11 +12,15 @@ function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
         <Breadcrumbs
           items={[
             { label: "Catalog", href: "/catalog" },
-            { label: catalogSlug, href: `/catalog/${catalogSlug}` },
+            {
+              label: catalogSlug.charAt(0).toUpperCase() + catalogSlug.slice(1),
+              href: `/catalog/${catalogSlug}`,
+            },
           ]}
         />
-
-        <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem]">
+      </div>
+      <div className="min-h-[64.8vh]">
+        <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem] mt-10">
           Catalog
         </h1>
         <div className="flex mx-20 ml-[9rem]">
@@ -40,21 +42,24 @@ function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
             ))}
           </ul>
 
-          <div className="grid grid-cols-6 md:grid-cols-4 lg:grid-cols-6 gap-x-10 gap-y-16 place-items-center text-center ml-[9rem]">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 3xl:grid-cols-12 gap-x-10 gap-y-16 place-items-center text-center ml-[9rem]">
             {products.map(({ node: product }) => (
-              <Link href={`/catalog/${catalogSlug}/${product.productSlug}`}>
+              <Link
+                key={product.productSlug}
+                href={`/catalog/${catalogSlug}/${product.productSlug}`}
+              >
                 <Image
                   src={product.image[0]?.url}
                   alt={product.name}
-                  width={120}
-                  height={120}
+                  width={100}
+                  height={100}
                 />
                 {product.name}
               </Link>
             ))}
             {pageInfo.hasNextPage && (
               <More
-                size={2}
+                size={96}
                 currentCursor={pageInfo.endCursor}
                 catalogSlug={catalogSlug}
               />
@@ -74,16 +79,15 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: "blocking", // or 'true' if you want to use fallback rendering
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }) {
   const { catalogSlug, catalogName } = params;
-  //const products = await fetchProductsByCatalog(catalogSlug);
   const {
     productsConnection: { edges, pageInfo },
-  } = await fetchInitialProductsConnection(2, catalogSlug);
+  } = await fetchInitialProductsConnection(96, catalogSlug);
 
   const catalogs = await fetchCatalogs();
   return {
@@ -93,7 +97,7 @@ export async function getStaticProps({ params }) {
       products: edges || [],
       pageInfo,
     },
-    revalidate: 60, // Optional: Set a revalidation time in seconds
+    revalidate: 60,
   };
 }
 
