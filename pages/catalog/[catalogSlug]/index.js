@@ -59,7 +59,7 @@ function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
             ))}
             {pageInfo.hasNextPage && (
               <More
-                size={96}
+                size={100}
                 currentCursor={pageInfo.endCursor}
                 catalogSlug={catalogSlug}
               />
@@ -87,7 +87,7 @@ export async function getStaticProps({ params }) {
   const { catalogSlug, catalogName } = params;
   const {
     productsConnection: { edges, pageInfo },
-  } = await fetchInitialProductsConnection(96, catalogSlug);
+  } = await fetchInitialProductsConnection(100, catalogSlug);
 
   const catalogs = await fetchCatalogs();
   return {
