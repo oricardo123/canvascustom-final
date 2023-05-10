@@ -1,0 +1,51 @@
+import Navbar from "@/components/Navigation/NavBar";
+import Footer from "@/components/Navigation/Footer";
+import "../styles/globals.css";
+import { Provider } from "react-redux";
+import { store } from "../store/store.js";
+import { initializeApollo } from "../graphql/client";
+import { ApolloProvider } from "@apollo/client";
+import { useState, useEffect } from "react";
+import { InMemoryCache } from "@apollo/client";
+import { persistCache } from "apollo3-cache-persist";
+
+async function initOnClient() {
+  if (typeof window !== "undefined") {
+    const cache = new InMemoryCache({
+      /* your config */
+    });
+    await persistCache({
+      cache,
+      storage: window.localStorage,
+    });
+    return cache;
+  }
+}
+
+export default function App({ Component, pageProps }) {
+  const [client, setClient] = useState(null);
+
+  useEffect(() => {
+    async function prepareClient() {
+      const cache = await initOnClient();
+      const apolloClient = initializeApollo(null, cache);
+      setClient(apolloClient);
+    }
+
+    prepareClient();
+  }, []);
+
+  if (!client) {
+    return null;
+  }
+
+  return (
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </Provider>
+    </ApolloProvider>
+  );
+}

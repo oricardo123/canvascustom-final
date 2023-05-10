@@ -48,6 +48,7 @@ export const GET_PRODUCT = gql`
     product(where: { productSlug: $productSlug }) {
       id
       description
+      name
       image {
         id
         url
@@ -62,7 +63,7 @@ export const GET_INITIAL_PRODUCTS_CONNECTION = gql`
   query GetProductsConnnection($size: Int!, $catalogSlug: String!) {
     productsConnection(
       first: $size
-      where: { catalogs_every: { catalogSlug: $catalogSlug } }
+      where: { catalogs_some: { catalogSlug: $catalogSlug } }
     ) {
       pageInfo {
         endCursor
@@ -80,6 +81,10 @@ export const GET_INITIAL_PRODUCTS_CONNECTION = gql`
             id
             url
           }
+          catalogs {
+            catalogSlug
+          }
+          id
         }
       }
     }
@@ -88,14 +93,14 @@ export const GET_INITIAL_PRODUCTS_CONNECTION = gql`
 
 export const GET_PRODUCTS_CONNECTION = gql`
   query GetProductsConnnection(
-    $cursor: String!
+    $cursor: String
     $size: Int!
     $catalogSlug: String!
   ) {
     productsConnection(
       after: $cursor
       first: $size
-      where: { catalogs_every: { catalogSlug: $catalogSlug } }
+      where: { catalogs_some: { catalogSlug: $catalogSlug } }
     ) {
       pageInfo {
         endCursor
@@ -113,6 +118,10 @@ export const GET_PRODUCTS_CONNECTION = gql`
             id
             url
           }
+          catalogs {
+            catalogSlug
+          }
+          id
         }
       }
     }

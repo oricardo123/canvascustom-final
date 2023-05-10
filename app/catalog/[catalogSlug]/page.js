@@ -1,11 +1,40 @@
 import Link from "next/link";
 import Image from "next/image";
-import Breadcrumbs from "../../../components/Navigation/Breadcrumbs.js";
 import More from "../../../components/More.jsx";
-import { fetchCatalogs } from "../../../lib/fetchCatalogs";
+import { fetchCatalogs } from "../../../lib/fetchCatalogs.js";
 import { fetchInitialProductsConnection } from "@/lib/fetchInitialProductsConnection";
+import { GET_PRODUCTS_CONNECTION } from "@/graphql/queries";
+import { useQuery, NetworkStatus, useApolloClient } from "@apollo/client";
+import { initializeApollo } from "../../../graphql/client.js";
+import { getClient } from "@/lib/client";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
+import { GET_CATALOGS, GET_PRODUCTS_BY_CATALOG } from "@/graphql/queries";
 
-function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
+export default async function Catalog({ params: { catalogSlug } }) {
+  const client = getClient();
+  let productsList = new Array();
+
+  const {
+    data: { catalogs },
+  } = await client.query({
+    query: GET_CATALOGS,
+  });
+
+  let hasMoreProducts = true;
+  let cursor = null;
+  while (hasMoreProducts) {
+    const {
+      data: { productsConnection },
+    } = await client.query({
+      query: GET_PRODUCTS_CONNECTION,
+      variables: { cursor, size: 2, catalogSlug },
+    });
+    const { pageInfo, edges } = productsConnection;
+    cursor = pageInfo.endCursor;
+    productsList = [...productsList, ...edges];
+    if (!pageInfo.hasNextPage) hasMoreProducts = false;
+  }
+
   return (
     <>
       <div className="mt-24">
@@ -43,7 +72,7 @@ function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
           </ul>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 3xl:grid-cols-12 gap-x-10 gap-y-16 place-items-center text-center ml-[9rem]">
-            {products.map(({ node: product }) => (
+            {productsList.map(({ node: product }) => (
               <Link
                 key={product.productSlug}
                 href={`/catalog/${catalogSlug}/${product.productSlug}`}
@@ -57,48 +86,16 @@ function Catalog({ catalogs, catalogSlug, products, pageInfo }) {
                 {product.name}
               </Link>
             ))}
-            {pageInfo.hasNextPage && (
+            {/* {pageInfo.hasNextPage && (
               <More
-                size={100}
-                currentCursor={pageInfo.endCursor}
+                pageInfo={pageInfo}
                 catalogSlug={catalogSlug}
+                loadMoreProducts={loadMoreProducts}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>
     </>
   );
 }
-
-export async function getStaticPaths() {
-  const catalogs = await fetchCatalogs();
-  const paths = catalogs.map((catalog) => ({
-    params: { catalogSlug: catalog.catalogSlug },
-  }));
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const { catalogSlug, catalogName } = params;
-  const {
-    productsConnection: { edges, pageInfo },
-  } = await fetchInitialProductsConnection(100, catalogSlug);
-
-  const catalogs = await fetchCatalogs();
-  return {
-    props: {
-      catalogs,
-      catalogSlug,
-      products: edges || [],
-      pageInfo,
-    },
-    revalidate: 60,
-  };
-}
-
-export default Catalog;
