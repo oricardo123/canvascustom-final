@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Canvas Custom</title>
+        <title>Canvas Custom Furniture</title>
       </Head>
       <HomeTopGallery />
       <HomeContainer2 />

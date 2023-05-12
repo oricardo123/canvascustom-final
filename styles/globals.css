@@ -52,3 +52,7 @@ background-color:#733E1D ;
   box-sizing: border-box;
   pointer-events: none;
 }
+
+.specs{
+  height: 3rem;
+}

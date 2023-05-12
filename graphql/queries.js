@@ -19,6 +19,11 @@ export const GET_CATALOGS = gql`
         }
       }
       catalogSlug
+      specImages {
+        id
+        url
+      }
+      specDimensions
     }
   }
 `;

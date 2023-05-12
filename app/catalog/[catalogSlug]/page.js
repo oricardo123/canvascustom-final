@@ -34,7 +34,9 @@ export default async function Catalog({ params: { catalogSlug } }) {
     productsList = [...productsList, ...edges];
     if (!pageInfo.hasNextPage) hasMoreProducts = false;
   }
-
+  const { name } = catalogs.filter(
+    (catalog) => catalog.catalogSlug === catalogSlug
+  )[0];
   return (
     <>
       <div className="mt-24">
@@ -50,13 +52,17 @@ export default async function Catalog({ params: { catalogSlug } }) {
       </div>
       <div className="min-h-[64.8vh]">
         <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem] mt-10">
-          Catalog
+          {name} Catalog
         </h1>
         <div className="flex mx-20 ml-[9rem]">
           <ul>
             {catalogs?.map((catalog) => (
               <li key={catalog.catalogSlug}>
-                <Link href={`/catalog/${catalog.catalogSlug}`}>
+                <Link
+                  href={{
+                    pathname: `/catalog/${catalog.catalogSlug}`,
+                  }}
+                >
                   <span
                     className={
                       catalog.name.toLowerCase() === catalogSlug
@@ -86,13 +92,6 @@ export default async function Catalog({ params: { catalogSlug } }) {
                 {product.name}
               </Link>
             ))}
-            {/* {pageInfo.hasNextPage && (
-              <More
-                pageInfo={pageInfo}
-                catalogSlug={catalogSlug}
-                loadMoreProducts={loadMoreProducts}
-              />
-            )} */}
           </div>
         </div>
       </div>
