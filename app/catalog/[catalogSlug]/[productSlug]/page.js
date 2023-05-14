@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Head from "next/head";
 import Parser, { domToReact } from "html-react-parser";
 import { getClient } from "@/lib/client";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
@@ -37,6 +38,9 @@ export default async function Product({
   )[0];
   return (
     <>
+      <Head>
+        <title>{productSlug}</title>
+      </Head>
       <div className="mb-[6.49rem]">
         <div className="mt-20">
           <Breadcrumbs

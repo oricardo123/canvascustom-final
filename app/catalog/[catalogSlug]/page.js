@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head.js";
 import More from "../../../components/More.jsx";
 import { fetchCatalogs } from "../../../lib/fetchCatalogs.js";
 import { fetchInitialProductsConnection } from "@/lib/fetchInitialProductsConnection";
@@ -39,6 +40,9 @@ export default async function Catalog({ params: { catalogSlug } }) {
   )[0];
   return (
     <>
+      <Head>
+        <title>{catalogSlug}</title>
+      </Head>
       <div className="mt-24">
         <Breadcrumbs
           items={[
