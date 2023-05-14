@@ -30,7 +30,6 @@ const PortfolioTopGallery = () => {
           className="absolute z-10 right-[15%] bottom-[15%] w-auto rounded-2xl hidden lg:block"
         />
       </div>
-      <div className="hr h-1 w-auto mt-[13rem] mb-[9rem] mx-[9rem]" />
     </>
   );
 };
