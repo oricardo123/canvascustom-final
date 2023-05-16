@@ -1,9 +1,13 @@
-import Image from "next/image"
+import Image from "next/image";
 
- const PastClients = () => {
+const PastClients = () => {
   return (
-    <div><h1>PastClients</h1></div>
-  )
-}
+    <>
+      <div className="flex justify-center">
+      <h1 className="font-bold">Past Clients</h1>
+      </div>
+    </>
+  );
+};
 
-export default PastClients
+export default PastClients;
