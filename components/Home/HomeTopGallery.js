@@ -7,8 +7,6 @@ export default function HomeTopGallery() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-20 relative text-white">
-        <div className="left-vector w-auto h-[45rem] relative scale-x-[-1] lg:mr-[-15rem] hidden md:block" />
-        <div className="right-vector w-auto h-[49rem] ml-[-31rem] relative lg:ml-[-12rem]" />
 
         <h1 className="absolute max-w-[41rem]  mt-40 left-[10%] font-extrabold text-[45px] mr-3 z-50">
           Transform your space with our custom furniture solutions at Canvas
