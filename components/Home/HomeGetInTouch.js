@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function HomeGetInTouch() {
   return (
     <>
-      <div className="flex justify-center text-center text-[2.81rem]/[3.8rem] font-bold w-auto mx-[9rem]">
+      <div className="flex justify-center text-center text-[2.81rem]/[3.8rem] font-bold w-auto md:mx-[9rem] xs:mx-[1rem]">
         Get in touch with us to start your custom furniture project today.
       </div>
       <div className="flex justify-center">

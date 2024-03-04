@@ -1,15 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head.js";
-import More from "../../../components/More.jsx";
-import { fetchCatalogs } from "../../../lib/fetchCatalogs.js";
-import { fetchInitialProductsConnection } from "@/lib/fetchInitialProductsConnection";
 import { GET_PRODUCTS_CONNECTION } from "@/graphql/queries";
-import { useQuery, NetworkStatus, useApolloClient } from "@apollo/client";
-import { initializeApollo } from "../../../graphql/client.js";
 import { getClient } from "@/lib/client";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs";
-import { GET_CATALOGS, GET_PRODUCTS_BY_CATALOG } from "@/graphql/queries";
+import { GET_CATALOGS } from "@/graphql/queries";
 
 export default async function Catalog({ params: { catalogSlug } }) {
   const client = getClient();
@@ -39,14 +34,14 @@ export default async function Catalog({ params: { catalogSlug } }) {
     (catalog) => catalog.catalogSlug === catalogSlug
   )[0];
   return (
-    <>
+    <div className="mb-24 text-gray-400">
       <Head>
         <title>{catalogSlug}</title>
       </Head>
-      <div className="mt-24">
+      <div className="mt-[7rem]">
         <Breadcrumbs
           items={[
-            { label: "Catalog", href: "/catalog" },
+            { label: "Collection", href: "/catalog" },
             {
               label: catalogSlug.charAt(0).toUpperCase() + catalogSlug.slice(1),
               href: `/catalog/${catalogSlug}`,
@@ -54,11 +49,12 @@ export default async function Catalog({ params: { catalogSlug } }) {
           ]}
         />
       </div>
-      <div className="min-h-[64.8vh]">
-        <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem] mt-10">
-          {name} Catalog
-        </h1>
-        <div className="flex mx-20 ml-[9rem]">
+
+      <div className="flex mr-5 mt-10 xs:ml-4 lg:mx-[9rem] place-content-center">
+        <div>
+          <h1 className="text-4xl font-bold leading-tight mb-[4rem]">
+            {name}
+          </h1>
           <ul>
             {catalogs?.map((catalog) => (
               <li key={catalog.catalogSlug}>
@@ -80,25 +76,24 @@ export default async function Catalog({ params: { catalogSlug } }) {
               </li>
             ))}
           </ul>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 3xl:grid-cols-12 gap-x-10 gap-y-16 place-items-center text-center ml-[9rem]">
-            {productsList.map(({ node: product }) => (
-              <Link
-                key={product.productSlug}
-                href={`/catalog/${catalogSlug}/${product.productSlug}`}
-              >
-                <Image
-                  src={product.image[0]?.url}
-                  alt={product.name}
-                  width={100}
-                  height={100}
-                />
-                {product.name}
-              </Link>
-            ))}
-          </div>
+        </div>
+        <div className="grid grid-cols-5 gap-x-3 gap-y-16 lg:gap-x-10 text-center ml-4 lg:ml-[9rem] ">
+          {productsList.map(({ node: product }) => (
+            <Link
+              key={product.productSlug}
+              href={`/catalog/${catalogSlug}/${product.productSlug}`}
+            >
+              <Image
+                src={product.image[0]?.url}
+                alt={product.name}
+                width={100}
+                height={100}
+              />
+              {product.name}
+            </Link>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

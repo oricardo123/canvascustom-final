@@ -19,11 +19,11 @@ export default async function Catalogs({ params }) {
       <Head>
         <title>Catalog</title>
       </Head>
-      <div className="mt-24 mb-[8.74rem]">
-        <Breadcrumbs items={[{ label: "Catalog", href: "/catalog" }]} />
+      <div className="mt-[7rem] mb-[8.74rem]">
+        <Breadcrumbs items={[{ label: "Collection", href: "/catalog" }]} />
 
         <h1 className="text-4xl font-bold leading-tight mb-[4rem] ml-[9rem] mt-10">
-          Catalog
+          Collection
         </h1>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16 place-items-center text-center mx-24">
           {catalogs.map((catalog) => (

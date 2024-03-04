@@ -41,11 +41,11 @@ export default async function Product({
       <Head>
         <title>{productSlug}</title>
       </Head>
-      <div className="mb-[6.49rem]">
+      <div className="my-[7rem]">
         <div className="mt-20">
           <Breadcrumbs
             items={[
-              { label: "Catalog", href: "/catalog" },
+              { label: "Collection", href: "/catalog" },
               {
                 label:
                   catalogSlug.charAt(0).toUpperCase() + catalogSlug.slice(1),

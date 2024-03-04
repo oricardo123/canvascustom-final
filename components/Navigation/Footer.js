@@ -7,7 +7,7 @@ const Footer = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Catalog", href: "/catalog" },
+    { name: "Collection", href: "/collection" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Contact", href: "/contact" },
   ];

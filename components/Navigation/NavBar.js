@@ -12,13 +12,13 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Collection", href: "/collection" },
+    { name: "Collection", href: "/catalog" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <div className="bg-white text-FooterColor">
+    <div className="bg-white text-gray-400">
       <header className="absolute inset-x-0 top-0 z-50 w-">
         <nav
           className="flex items-center justify-between p-6 lg:px-8"
@@ -30,7 +30,7 @@ const Navbar = () => {
               <Image
                 src={Logo}
                 alt="Picture"
-                width={100}
+                width={140}
                 height={100}
               />
             </Link>
